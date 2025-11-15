@@ -1,0 +1,62 @@
+[
+  {
+    "key": "cl-2730",
+    "name": "La Araucanía"
+  },
+  {
+    "key": "cl-bi",
+    "name": "Bío-Bío"
+  },
+  {
+    "key": "cl-ll",
+    "name": "Los Lagos"
+  },
+  {
+    "key": "cl-li",
+    "name": "Libertador General Bernardo O'Higgins"
+  },
+  {
+    "key": "cl-ai",
+    "name": "Aisén del General Carlos Ibáñez del Campo"
+  },
+  {
+    "key": "cl-ma",
+    "name": "Magallanes y Antártica Chilena"
+  },
+  {
+    "key": "cl-co",
+    "name": "Coquimbo"
+  },
+  {
+    "key": "cl-at",
+    "name": "Atacama"
+  },
+  {
+    "key": "cl-vs",
+    "name": "Valparaíso"
+  },
+  {
+    "key": "cl-rm",
+    "name": "Región Metropolitana de Santiago"
+  },
+  {
+    "key": "cl-ar",
+    "name": "Los Ríos"
+  },
+  {
+    "key": "cl-ml",
+    "name": "Maule"
+  },
+  {
+    "key": "cl-ta",
+    "name": "Tarapacá"
+  },
+  {
+    "key": "cl-2740",
+    "name": "Arica y Parinacota"
+  },
+  {
+    "key": "cl-an",
+    "name": "Antofagasta"
+  }
+]

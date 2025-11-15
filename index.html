@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Monografía — Presentación dinámica</title>
+  <link rel="stylesheet" href="styles.css" onerror="document.body.setAttribute('data-css-error','true')" />
+</head>
+<body>
+  <noscript>Esta presentación requiere JavaScript habilitado.</noscript>
+  <div id="css-error" style="display:none;position:fixed;top:0;left:0;width:100%;background:#ffeded;color:#b20000;padding:8px;font-family:monospace;font-size:12px;z-index:999">No se pudo cargar styles.css</div>
+  <div id="app" class="app"></div>
+  <div class="controls">
+    <button id="prev">◀</button>
+    <button id="next">▶</button>
+  </div>
+  <script defer src="dist/index.js"></script>
+  <script>document.addEventListener('DOMContentLoaded',()=>{if(document.body.getAttribute('data-css-error')==='true'){document.getElementById('css-error')!.style.display='block';console.error('styles.css no cargó')} else {console.log('styles.css cargado')}})</script>
+</body>
+</html>
