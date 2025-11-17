@@ -1,10 +1,80 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { slides } from '../lib/slides'
+import { slides, AnimationEffect } from '../lib/slides'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChileMap } from '../components/ChileMap'
 import { ComparisonBars } from '../components/ComparisonBars'
 import { DataPie } from '../components/DataPie'
 import { SlideView } from '../components/SlideView'
+
+// Animation variants for chart effects
+const getChartAnimationVariants = (effect?: AnimationEffect) => {
+  if (!effect || effect === 'none') {
+    return {
+      initial: { opacity: 1 },
+      animate: { opacity: 1 }
+    };
+  }
+
+  const variants: Record<AnimationEffect, { initial: any; animate: any }> = {
+    fadeIn: {
+      initial: { opacity: 0 },
+      animate: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } }
+    },
+    slideInLeft: {
+      initial: { opacity: 0, x: -100 },
+      animate: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 0.9, 0.37, 1] } }
+    },
+    slideInRight: {
+      initial: { opacity: 0, x: 100 },
+      animate: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 0.9, 0.37, 1] } }
+    },
+    slideInUp: {
+      initial: { opacity: 0, y: 100 },
+      animate: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 0.9, 0.37, 1] } }
+    },
+    slideInDown: {
+      initial: { opacity: 0, y: -100 },
+      animate: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 0.9, 0.37, 1] } }
+    },
+    zoomIn: {
+      initial: { opacity: 0, scale: 0.5 },
+      animate: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] } }
+    },
+    zoomOut: {
+      initial: { opacity: 0, scale: 1.5 },
+      animate: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] } }
+    },
+    rotateIn: {
+      initial: { opacity: 0, rotate: -180, scale: 0.5 },
+      animate: { opacity: 1, rotate: 0, scale: 1, transition: { duration: 0.8, ease: [0.22, 0.9, 0.37, 1] } }
+    },
+    flipIn: {
+      initial: { opacity: 0, rotateY: 90 },
+      animate: { opacity: 1, rotateY: 0, transition: { duration: 0.7, ease: [0.22, 0.9, 0.37, 1] } }
+    },
+    blurIn: {
+      initial: { opacity: 0, filter: 'blur(10px)' },
+      animate: { opacity: 1, filter: 'blur(0px)', transition: { duration: 0.8, ease: 'easeOut' } }
+    },
+    bounceIn: {
+      initial: { opacity: 0, scale: 0.3 },
+      animate: { 
+        opacity: 1, 
+        scale: 1, 
+        transition: { 
+          duration: 0.8, 
+          ease: [0.68, -0.55, 0.265, 1.55] 
+        } 
+      }
+    },
+    none: {
+      initial: { opacity: 1 },
+      animate: { opacity: 1 }
+    }
+  };
+
+  return variants[effect] || variants.fadeIn;
+};
 
 // Variants aplican principios: anticipación, elasticidad, arcos, suavidad y exageración leve.
 const slideVariants = {
@@ -46,6 +116,7 @@ export default function Presentation() {
   }, [goto, index])
 
   const current = slides[index]
+  const chartAnimation = getChartAnimationVariants(current.chartEffect);
 
   return (
     <div className="app">
@@ -68,9 +139,14 @@ export default function Presentation() {
               <>
                 {current.kind === 'map' && (
               <>
-                <div style={{ flex: '0 0 75%', height: '100%' }}>
+                <motion.div 
+                  key={`${current.id}-chart`}
+                  style={{ flex: '0 0 75%', height: '100%' }}
+                  initial={chartAnimation.initial}
+                  animate={chartAnimation.animate}
+                >
                   <ChileMap />
-                </div>
+                </motion.div>
                 {current.bullets.length > 0 && (
                   <div style={{ flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <ul className="slide-bullets" style={{ margin: 0 }}>
@@ -92,8 +168,24 @@ export default function Presentation() {
                 )}
               </>
             )}
-            {current.kind === 'bars' && <ComparisonBars />}
-            {current.kind === 'pie' && <DataPie />}
+            {current.kind === 'bars' && (
+              <motion.div
+                key={`${current.id}-chart`}
+                initial={chartAnimation.initial}
+                animate={chartAnimation.animate}
+              >
+                <ComparisonBars />
+              </motion.div>
+            )}
+            {current.kind === 'pie' && (
+              <motion.div
+                key={`${current.id}-chart`}
+                initial={chartAnimation.initial}
+                animate={chartAnimation.animate}
+              >
+                <DataPie />
+              </motion.div>
+            )}
             {/* Bullets solo si no es gráfico o para reforzar puntos */}
             {current.kind === 'text' && (
               <ul className="slide-bullets">
