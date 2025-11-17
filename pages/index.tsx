@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChileMap } from '../components/ChileMap'
 import { ComparisonBars } from '../components/ComparisonBars'
 import { DataPie } from '../components/DataPie'
+import { SlideView } from '../components/SlideView'
 
 // Variants aplican principios: anticipación, elasticidad, arcos, suavidad y exageración leve.
 const slideVariants = {
@@ -61,7 +62,11 @@ export default function Presentation() {
         >
           <h1 className="slide-title">{current.title}</h1>
           <div className="slide-content" style={current.kind === 'map' ? { flexDirection: 'row', gap: '20px' } : {}}>
-            {current.kind === 'map' && (
+            {current.image ? (
+              <SlideView slide={current} />
+            ) : (
+              <>
+                {current.kind === 'map' && (
               <>
                 <div style={{ flex: '0 0 75%', height: '100%' }}>
                   <ChileMap />
@@ -122,6 +127,8 @@ export default function Presentation() {
                   >{b}</motion.li>
                 ))}
               </ul>
+            )}
+              </>
             )}
           </div>
           {current.footnote && <div className="footnote">{current.footnote}</div>}
