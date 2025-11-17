@@ -4,10 +4,25 @@ export interface Slide {
   bullets: string[];
   footnote?: string;
   kind?: 'text' | 'map' | 'bars' | 'pie';
+  image?: string; // Image URL or path
+  imagePosition?: 'left' | 'right' | 'top' | 'bottom' | 'center';
+  imageSize?: 'small' | 'medium' | 'large' | number;
+  imageOffset?: { x?: number; y?: number };
+  textAlign?: 'left' | 'center' | 'right';
 }
 
 export const slides: Slide[] = [
-  { id: 'title', title: 'El impacto de algoritmos sesgados en el acceso al crédito', bullets: ['Monografía: NEGOCIOS EN INTERNET', '24 de noviembre, 2025 — Profesor: Roberto Jijena'], footnote: 'Monografía (2025)', kind: 'text' },
+  { 
+    id: 'title', 
+    title: 'Monografía: El impacto de los algoritmos sesgados en el acceso al crédito: Un análisis de sistemas bancarios en Brasil y Chile.', 
+    bullets: ['Monografía: NEGOCIOS EN INTERNET', 'Profesor: Roberto Jijena', 'Alumno: Camilo González', '24 de noviembre, 2025'], 
+    footnote: 'Monografía (2025)', 
+    kind: 'text',
+    image: 'https://res.cloudinary.com/dddfx1xwt/image/upload/v1757605771/freepik__en-esta-foto-img1-haz-que-se-vea-muy-natural-e-inf__72304_fb0u6x.jpg',
+    imagePosition: 'left',
+    imageSize: 'large',
+    textAlign: 'right'
+  },
   { id: 'agenda', title: 'Agenda', bullets: ['Contexto y problema', 'Metodología', 'Hallazgos Brasil / Chile', 'Visualizaciones', 'Recomendaciones y conclusiones'], footnote: 'Monografía (2025)', kind: 'text' },
   { id: 'context', title: 'Contexto: por qué importa', bullets: ['Digitalización del crédito y auge de algoritmos', 'Sesgos: muestreo, proxies y diseño', 'Impacto potencial: exclusión y desigualdad'], footnote: 'OCDE / CEPAL / Monografía', kind: 'text' },
   { id: 'map-chile', title: 'Mapa IDFR — Inclusión digital financiera', bullets: ['IDFR combina bancarización, pagos digitales, internet y densidad transaccional', 'Regiones extremas muestran mayor riesgo de sesgo por datos delgados', 'RM, Antofagasta y Magallanes lideran en digitalización'], footnote: 'Fuente compuesta: CASEN, SUBTEL, Banco Central, Findex (normalizado)', kind: 'map' },
