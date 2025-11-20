@@ -75,7 +75,7 @@ export const slides: Slide[] = [
     imagePosition: 'left',
     imageSize: 790,
     textAlign: 'right',
-    imageEffect: 'fadeIn'
+    imageEffect: 'bounceIn'
   },
   { id: 'findings-cl',
     title: 'Hallazgos — Chile', bullets: ['Ley Fintec + NCG 514 (SFA)', 'Implementación julio 2026', 'Riesgo: estandarización parcial', 'Oportunidad: fairness temprana'],
@@ -91,5 +91,11 @@ export const slides: Slide[] = [
   { id: 'regulation', title: 'Brechas regulatorias', bullets: ['Principios sin mecanismos operativos', 'Accountability y auditoría técnica limitada', 'Explicabilidad insuficiente al usuario', 'Alinear con estándares OCDE (IA confiable)'], footnote: 'OCDE (2019) / Monografía' },
   { id: 'recommendations', title: 'Recomendaciones prioritarias', bullets: ['Auditorías algorítmicas periódicas obligatorias', 'Model cards regulatorias estandarizadas', 'Regulación datos alternativos con validación'], footnote: 'Monografía (2025)' },
   { id: 'limitations', title: 'Limitaciones y agenda futura', bullets: ['Sin acceso a modelos propietarios', 'Evidencia de sesgos fragmentaria', 'Pilotos de mitigación y estudios controlados', 'Comparar con UE / EE.UU. y apelación'], footnote: 'Monografía (2025)' },
-  { id: 'conclusions', title: 'Conclusiones', bullets: ['Algoritmos reflejan desigualdades de origen', 'Open Finance / SFA: oportunidad condicionada', 'Gobernanza algorítmica = ventaja competitiva'], footnote: 'Monografía (2025)' }
+  { id: 'conclusions', title: 'Conclusiones', bullets: ['Algoritmos reflejan desigualdades de origen', 'Open Finance / SFA: oportunidad condicionada', 'Gobernanza algorítmica = ventaja competitiva'], footnote: 'Monografía (2025)' },
+  { id: 'thankyou', title: '', bullets: [],
+    image: 'https://img.freepik.com/vector-premium/gracias-diferentes-idiomas-fondo_417238-117.jpg',
+    imagePosition: 'center',
+    imageSize: 790,
+    imageEffect: 'bounceIn',
+    footnote: 'Camilo González'}
 ];

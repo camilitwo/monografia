@@ -169,22 +169,28 @@ export default function Presentation() {
               </>
             )}
             {current.kind === 'bars' && (
-              <motion.div
-                key={`${current.id}-chart`}
-                initial={chartAnimation.initial}
-                animate={chartAnimation.animate}
-              >
-                <ComparisonBars />
-              </motion.div>
+              <>
+                <motion.div
+                  key={`${current.id}-chart`}
+                  style={{ width:'100%', minHeight:'340px', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'clamp(32px,3vh,48px)' }}
+                  initial={chartAnimation.initial}
+                  animate={chartAnimation.animate}
+                >
+                  <ComparisonBars />
+                </motion.div>
+              </>
             )}
             {current.kind === 'pie' && (
-              <motion.div
-                key={`${current.id}-chart`}
-                initial={chartAnimation.initial}
-                animate={chartAnimation.animate}
-              >
-                <DataPie />
-              </motion.div>
+              <>
+                <motion.div
+                  key={`${current.id}-chart`}
+                  style={{ width:'100%', minHeight:'340px', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'clamp(32px,3vh,48px)' }}
+                  initial={chartAnimation.initial}
+                  animate={chartAnimation.animate}
+                >
+                  <DataPie />
+                </motion.div>
+              </>
             )}
             {/* Bullets solo si no es gráfico o para reforzar puntos */}
             {current.kind === 'text' && (

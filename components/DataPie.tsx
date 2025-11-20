@@ -13,8 +13,9 @@ const data = [
 const colors = ['#1F3A4B','#2E8B57','#F2C94C','#EB5757','#9CA3AF']
 
 export const DataPie: React.FC = () => (
-  <div style={{ width:'100%', height:'100%', display:'flex', flexDirection:'column', justifyContent:'center' }}>
-    <ResponsiveContainer width="100%" height="75%">
+  <div style={{ width:'100%', display:'flex', flexDirection:'column', justifyContent:'center', maxWidth:'900px', margin:'0 auto' }}>
+    {/* aspect ratio evita altura 0 en flujos con animaciones */}
+    <ResponsiveContainer width="100%" aspect={2}>
       <PieChart>
         <Pie
           data={data}
