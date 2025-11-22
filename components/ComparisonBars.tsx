@@ -11,8 +11,9 @@ const data = [
 ]
 
 export const ComparisonBars: React.FC = () => (
-  <div style={{ width:'100%', height:'100%', display:'flex', flexDirection:'column', justifyContent:'center' }}>
-    <ResponsiveContainer width="100%" height="70%">
+  <div style={{ width:'100%', display:'flex', flexDirection:'column', justifyContent:'center', maxWidth:'900px', margin:'0 auto' }}>
+    {/* Usar aspect ratio para no depender de altura padre explícita */}
+    <ResponsiveContainer width="100%" aspect={2}>
       <BarChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis

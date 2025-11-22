@@ -1,11 +1,81 @@
 import React from 'react';
-import type { Slide } from '../lib/slides';
+import type { Slide, AnimationEffect } from '../lib/slides';
 import { motion } from 'framer-motion';
 
 const sizeMap: Record<'small' | 'medium' | 'large', string> = {
   small: '180px',
   medium: '300px',
   large: '420px'
+};
+
+// Animation variants for different effects
+const getAnimationVariants = (effect?: AnimationEffect) => {
+  if (!effect || effect === 'none') {
+    return {
+      initial: { opacity: 1 },
+      animate: { opacity: 1 }
+    };
+  }
+
+  const variants: Record<AnimationEffect, { initial: any; animate: any }> = {
+    fadeIn: {
+      initial: { opacity: 0 },
+      animate: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } }
+    },
+    slideInLeft: {
+      initial: { opacity: 0, x: -100 },
+      animate: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 0.9, 0.37, 1] } }
+    },
+    slideInRight: {
+      initial: { opacity: 0, x: 100 },
+      animate: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 0.9, 0.37, 1] } }
+    },
+    slideInUp: {
+      initial: { opacity: 0, y: 100 },
+      animate: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 0.9, 0.37, 1] } }
+    },
+    slideInDown: {
+      initial: { opacity: 0, y: -100 },
+      animate: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 0.9, 0.37, 1] } }
+    },
+    zoomIn: {
+      initial: { opacity: 0, scale: 0.5 },
+      animate: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] } }
+    },
+    zoomOut: {
+      initial: { opacity: 0, scale: 1.5 },
+      animate: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] } }
+    },
+    rotateIn: {
+      initial: { opacity: 0, rotate: -180, scale: 0.5 },
+      animate: { opacity: 1, rotate: 0, scale: 1, transition: { duration: 0.8, ease: [0.22, 0.9, 0.37, 1] } }
+    },
+    flipIn: {
+      initial: { opacity: 0, rotateY: 90 },
+      animate: { opacity: 1, rotateY: 0, transition: { duration: 0.7, ease: [0.22, 0.9, 0.37, 1] } }
+    },
+    blurIn: {
+      initial: { opacity: 0, filter: 'blur(10px)' },
+      animate: { opacity: 1, filter: 'blur(0px)', transition: { duration: 0.8, ease: 'easeOut' } }
+    },
+    bounceIn: {
+      initial: { opacity: 0, scale: 0.3 },
+      animate: { 
+        opacity: 1, 
+        scale: 1, 
+        transition: { 
+          duration: 0.8, 
+          ease: [0.68, -0.55, 0.265, 1.55] 
+        } 
+      }
+    },
+    none: {
+      initial: { opacity: 1 },
+      animate: { opacity: 1 }
+    }
+  };
+
+  return variants[effect] || variants.fadeIn;
 };
 
 const bulletVariants = {
@@ -63,11 +133,17 @@ export function SlideView({ slide }: { slide: Slide }) {
     gap: '16px'
   };
 
+  // Get animation variants for the image effect
+  const imageAnimation = getAnimationVariants(slide.imageEffect);
+
   const imgElement = slide.image ? (
-    <img 
+    <motion.img 
+      key={`${slide.id}-image`}
       src={slide.image} 
       alt={slide.title} 
       style={imageStyle}
+      initial={imageAnimation.initial}
+      animate={imageAnimation.animate}
     />
   ) : null;
 
